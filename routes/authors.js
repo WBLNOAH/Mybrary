@@ -6,11 +6,10 @@ const Author = require('../models/author') //require the file inside of author m
 router.get('/', async (req, res) =>{
   let searchOptions = {}
   if (req.query.name != null && req.query.name !== ''){
-    searchOptions.name = new RegExp(req.query.name, 'i')
+    searchOptions.name = new RegExp(req.query.name, 'i') //makes it so if we type jo or Ohn for John john appears
   }
   try{
     const authors = await Author.find(searchOptions) //{} means we have no conditions to check for (get all authors)
-    console.log(authors)
     res.render('authors/index', {
       authors: authors, 
       searchOptions: req.query
@@ -18,13 +17,12 @@ router.get('/', async (req, res) =>{
   } catch{
     res.redirect('/')
   }
-  
 })
 
 //New Author route  authors/new
 router.get('/new', (req, res) =>{
   res.render('authors/new', { author: new Author() })
-})
+}) 
 
 //Create author route   authors/
 router.post('/', async(req, res) =>{
