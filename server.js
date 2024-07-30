@@ -6,6 +6,7 @@ const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 const indexRouter = require('./routes/index')
 const authorRouter = require('./routes/authors')
@@ -15,6 +16,7 @@ app.set('view engine', 'ejs') //using ejs view engine
 app.set('views', __dirname + '/views') //our views are located in this folder
 app.set('layout', 'layouts/layout') //our layout is in this folder
 app.use(expressLayouts) //we are using our express layouts
+app.use(methodOverride('_method')) //allows us to do put and delete on forms (normally we can only do get and post)
 app.use(express.static('public')) //this is where our code and HTML is 
 app.use(bodyParser.urlencoded({limit: '10mb', extended: false}))
 
