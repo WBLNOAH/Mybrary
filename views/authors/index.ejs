@@ -1,7 +1,7 @@
 <h2>Search Authors</h2>
 <form action="/authors" method="GET">
   <label>Name</label>
-  <input type="text" name="name" value="<%searchOptions.name%>">
+  <input type="text" name="name" value="<%=searchOptions.name%>"> <!--the <  % = makes it so we keep our previous search when make a get request to this page-->
   <button type="submit">Search</button>
 </form>
 <br>
