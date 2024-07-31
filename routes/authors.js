@@ -40,6 +40,11 @@ router.post('/', async(req, res) =>{
   }
 })
 
+// router.get('/test', (req, res) =>{
+//   // res.redirect('new')   if we dont add a / at the beginning we begin from our current path in this case authors/ and add new to it
+//   res.redirect('/authors/new') //if we do add a / we begin from our start page localhost 3000:
+// }) 
+
 router.get('/:id', async(req, res) =>{
   try{
     const author = await Author.findById(req.params.id)
@@ -68,7 +73,7 @@ router.put('/:id', async (req, res) =>{
     author = await Author.findById(req.params.id) //uses database to find the author by its id
     author.name = req.body.name //updates our authors name
     await author.save()
-    res.redirect(`/authors/${author.id}`)
+    res.redirect(`/authors/${author.id}`) //we redirect from current path
   } catch {
     if (author == null){
       res.redirect('/')
